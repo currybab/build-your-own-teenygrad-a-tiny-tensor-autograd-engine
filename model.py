@@ -20,6 +20,7 @@ def argsort(values):
     return sorted(range(len(values)), key=lambda i: values[i])
 
 # Step 3 - make_op_enums
+import enum 
 UnaryOps = enum.Enum('UnaryOps', ['NEG', 'RELU', 'LOG', 'EXP', 'SQRT', 'SIGMOID'])
 BinaryOps = enum.Enum('BinaryOps', ['ADD', 'SUB', 'MUL', 'DIV', 'CMPLT', 'MAX'])
 ReduceOps = enum.Enum('ReduceOps', ['SUM', 'MAX'])
@@ -29,8 +30,13 @@ def make_op_enums():
     # TODO: create four enum classes naming every supported operation kind
     return (UnaryOps, BinaryOps, ReduceOps, MovementOps)
 
-# Step 4 - LazyBuffer (not yet solved)
-# TODO: implement
+# Step 4 - LazyBuffer
+class LazyBuffer:
+    def __init__(self, np_array):
+        # TODO: wrap np_array as an ndarray and expose shape and dtype
+        self.shape = np_array.shape
+        self.dtype = np_array.dtype
+        self._np = np_array
 
 # Step 5 - lazybuffer_const (not yet solved)
 # TODO: implement
