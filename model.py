@@ -34,9 +34,9 @@ def make_op_enums():
 class LazyBuffer:
     def __init__(self, np_array):
         # TODO: wrap np_array as an ndarray and expose shape and dtype
-        self.shape = np_array.shape
-        self.dtype = np_array.dtype
-        self._np = np_array
+        self._np = np.array(np_array)
+        self.shape = self._np.shape
+        self.dtype = self._np.dtype
 
 # Step 5 - lazybuffer_const (not yet solved)
 # TODO: implement
