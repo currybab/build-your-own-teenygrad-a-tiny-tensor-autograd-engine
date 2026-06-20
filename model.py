@@ -115,8 +115,10 @@ def expand(self, new_shape):
     new_shape = tuple(int(d) for d in new_shape)
     return LazyBuffer(np.array(np.broadcast_to(self._np, new_shape)))
 
-# Step 12 - lazybuffer_permute (not yet solved)
-# TODO: implement
+# Step 12 - lazybuffer_permute
+def permute(self, order):
+    # TODO: return a new LazyBuffer with axes reordered according to order
+    return LazyBuffer(self._np.transpose(order))
 
 # Step 13 - Function (not yet solved)
 # TODO: implement
