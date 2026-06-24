@@ -254,8 +254,17 @@ class Add(Function):
         # TODO: route grad_output to each input that requires a gradient
         return (grad_output if need else None for need in self.needs_input_grad)
 
-# Step 23 - Sub (not yet solved)
-# TODO: implement
+# Step 23 - Sub
+class Sub(Function):
+    def forward(self, x, y):
+        # TODO: return the elementwise difference x - y as a LazyBuffer
+        return lazybuffer_binary_e(x, BinaryOps.SUB, y)
+
+    def backward(self, grad_output):
+        # TODO: return gradients for x and y (None where grad is not needed)
+        x = grad_output if self.needs_input_grad[0] else None
+        y = grad_output.e(UnaryOps.NEG) if self.needs_input_grad[1] else None
+        return (x, y)
 
 # Step 24 - Mul (not yet solved)
 # TODO: implement
