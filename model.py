@@ -299,7 +299,7 @@ class Sum(Function):
     def forward(self, x, axis):
         # TODO: Reduce x with ReduceOps.SUM over axis (keepdims) and cache shape/axis.
         self.axis = axis
-        self.shape = x.shape
+        self.input_shape = x.shape
         return r(x, ReduceOps.SUM, axis)
 
 # Step 27 - sum_function_backward
