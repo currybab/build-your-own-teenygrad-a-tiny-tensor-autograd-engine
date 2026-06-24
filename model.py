@@ -294,8 +294,13 @@ class Div(Function):
         gy = lazybuffer_binary_e(lazybuffer_binary_e(lazybuffer_binary_e(grad_output, BinaryOps.MUL, self.x), BinaryOps.DIV, self.y), BinaryOps.DIV, self.y).e(UnaryOps.NEG) if self.needs_input_grad[1] else None
         return (gx, gy)
 
-# Step 26 - sum_function_forward (not yet solved)
-# TODO: implement
+# Step 26 - sum_function_forward
+class Sum(Function):
+    def forward(self, x, axis):
+        # TODO: Reduce x with ReduceOps.SUM over axis (keepdims) and cache shape/axis.
+        self.axis = axis
+        self.shape = x.shape
+        return r(x, ReduceOps.SUM, axis)
 
 # Step 27 - sum_function_backward (not yet solved)
 # TODO: implement
