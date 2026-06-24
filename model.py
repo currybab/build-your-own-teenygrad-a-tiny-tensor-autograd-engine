@@ -311,12 +311,17 @@ def backward(self, grad_output):
 class Max(Function):
     def forward(self, x, axis):
         # TODO: reduce x with the MAX reduce op along axis and cache for backward
-        self.input_shape = x.shape
+        self.x = x
         self.axis = axis
         return r(x, ReduceOps.MAX, axis)
 
-# Step 29 - max_function_backward (not yet solved)
-# TODO: implement
+# Step 29 - max_function_backward
+def backward(self, grad_output):
+    # TODO: route grad_output back to the input elements that were the maximum
+    return expand(grad_output, self.input_shape)
+
+
+Max.backward = backward
 
 # Step 30 - Reshape (not yet solved)
 # TODO: implement
