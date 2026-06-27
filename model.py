@@ -404,8 +404,20 @@ def tensor_from_data(data, requires_grad=False):
     # TODO: wrap a number, list, or numpy array in a LazyBuffer held by a Tensor
     return Tensor(data, requires_grad)
 
-# Step 36 - tensor_creation_helpers (not yet solved)
-# TODO: implement
+# Step 36 - tensor_creation_helpers
+def tensor_creation_helpers():
+    # TODO: return (zeros_fn, ones_fn, full_fn) building constant-filled Tensors
+    def zeros_fn(shape):
+        return Tensor(LazyBuffer.const(0.0, shape))
+    
+    def ones_fn(shape):
+        return Tensor(LazyBuffer.const(1.0, shape))
+    
+    def full_fn(shape, value):
+        return Tensor(LazyBuffer.const(value, shape))
+    
+
+    return (zeros_fn, ones_fn, full_fn)
 
 # Step 37 - tensor_randn (not yet solved)
 # TODO: implement
